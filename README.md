@@ -13,8 +13,7 @@ Bu proje, Unity'de temel sahne ve nesne yönetimini öğrenmek amacıyla hazırl
 - `Update()` fonksiyonu ile sürekli hareket sağlandı
 - `Time.deltaTime` ile zaman normalizasyonu yapıldı
 - `speed` değişkeni tanımlandı (public ve private farkı açıklandı)
-- `Input.GetAxis("Vertical")` ile klavyeden dikey hareket sağlandı
-- Bonus: `Input.GetAxis("Horizontal")` ile yatay eksen kontrolü eklendi
+- `Input.GetAxis("Horizontal")` ile yatay hareket, `Input.GetAxis("Vertical")` ile dikey hareket input alma yoluyla klavyeden sağlandı 
 
 ## Nasıl Çalıştırılır
 1. Unity Hub üzerinden projeyi açın.
@@ -23,6 +22,6 @@ Bu proje, Unity'de temel sahne ve nesne yönetimini öğrenmek amacıyla hazırl
 4. Oyun moduna geçerek karakterin hareketini gözlemleyin.
 
 ## Proje Sahibi
-- **Ad Soyad:** Yusuf [Soyadını buraya yaz]
+- **Ad Soyad:** Yusuf Çil
 - **Ders:** BLM-0364 Oyun Programlama
 - **Tarih:** Ekim 2025
