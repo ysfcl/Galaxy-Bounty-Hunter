@@ -22,7 +22,7 @@ Bu proje, Unity'de temel sahne ve nesne yönetimini öğrenmek amacıyla hazırl
 ## Nasıl Çalıştırılır
 1. Unity Hub üzerinden projeyi açın.
 2. `Scenes` klasöründen `GameScene` dosyasını açın.
-3. `Player` nesnesi seçili halde `player_sc.cs` script'ini inceleyin.
+3. Hafta 1 için `player_sc` dosyasını, Hafta 2 için `mermi_sc`ve `Ödev2` dosyalarını inceleyiniz. Hafta 2'de yazılı hareket fonksiyonu bulunmamaktadır
 4. Oyun moduna geçerek karakterin hareketini gözlemleyin.
 
 ## Proje Sahibi
