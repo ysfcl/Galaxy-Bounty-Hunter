@@ -1,4 +1,4 @@
-# Unity Ödev  - BLM0364 Oyun Programlama
+# Unity Haftalık Ödev  - BLM0364 Oyun Programlama
 
 Bu proje, Unity'de temel sahne ve nesne yönetimini öğrenmek amacıyla hazırlanmıştır.  
 Ödev kapsamında aşağıdaki işlemler yapılmıştır:
@@ -15,10 +15,10 @@ Bu proje, Unity'de temel sahne ve nesne yönetimini öğrenmek amacıyla hazırl
 - `speed` değişkeni tanımlandı (public ve private farkı açıklandı)
 - `Input.GetAxis("Horizontal")` ile yatay hareket, `Input.GetAxis("Vertical")` ile dikey hareket input alma yoluyla klavyeden sağlandı
 - Laser Prefab oluşturuldu
+- Laser Prefab için materyal oluşturuldu ve prefabe tanımlandı
 - Ateş etme fonksiyonu yazıldı
 - Harita dışarısına çıkan prefabler silindi ve bellekten tasarruf edildi
-- 
-
+  
 ## Nasıl Çalıştırılır
 1. Unity Hub üzerinden projeyi açın.
 2. `Scenes` klasöründen `GameScene` dosyasını açın.
