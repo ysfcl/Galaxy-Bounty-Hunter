@@ -21,12 +21,18 @@ public class enemy_sc : MonoBehaviour
 
             float randomX = Random.Range(-9.5f, 9.5f);
 
-            
+
 
             this.transform.position = new Vector3(Random.Range(-9.5f, 9.5f), 7.4f, 0);
 
         }
     }
+
+    void OnTiggerEnter2D(Collider2D collision)
+    {
+        
+    }
+
 
     void OnTriggerEnter(Collider other)
     {
@@ -34,7 +40,7 @@ public class enemy_sc : MonoBehaviour
         {
             //TODO:Player'ın canını bir eksilt
             player_sc player = other.transform.GetComponent<player_sc>();
-            player_sc.Damage();
+            player.Damage();
             Destroy(this.gameObject);
         }
 

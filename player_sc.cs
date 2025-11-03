@@ -1,12 +1,11 @@
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class player_sc2 : MonoBehaviour
+public class player_sc : MonoBehaviour
 {
     public int speed = 10;
 
     private float nextFire = 0;
-
 
     [SerializeField]
     private float fireRate = 0.25f;
@@ -43,10 +42,8 @@ void FireLaser()
     }
 
 
-
     void CalculateMovement()
     {
-
 
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
@@ -75,7 +72,6 @@ void FireLaser()
         }
 
 
-
     }
 
     public void Damage()
@@ -84,10 +80,26 @@ void FireLaser()
 
         if (lives == 0)
         {
+            SpawnManager_sc spawnManager_sc = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager_sc>();
+
+            if (spawnManager_sc != null)
+            {
+                spawnManager_sc.OnPlayerDeath();
+            }
+
+            else
+            {
+                Debug.LogError("Player_sc::Damage spawnManager_sc is NULL");
+            }
+            
+            
             Destroy(this.gameObject);
+            
+
         }
     }
 
 }
+
 
 
