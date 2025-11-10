@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
@@ -5,6 +6,8 @@ public class player_sc : MonoBehaviour
 {
     public int speed = 10;
 
+    [SerializeField]
+    private bool isTripleShotActive = false;
     private float nextFire = 0;
 
     [SerializeField]
@@ -14,12 +17,15 @@ public class player_sc : MonoBehaviour
     private GameObject laserPrefab;
 
     [SerializeField]
-    private int lives =5;
+    private GameObject tripleLaserPrefab;
+
+    [SerializeField]
+    private int lives = 5;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        transform.position=new Vector3(0,0,0);
+        transform.position = new Vector3(0, 0, 0);
     }
 
     // Update is called once per frame
@@ -28,17 +34,29 @@ public class player_sc : MonoBehaviour
 
         CalculateMovement();
 
-        if (Input.GetKeyDown(KeyCode.Space)&&(Time.time>nextFire))
+        if (Input.GetKeyDown(KeyCode.Space) && (Time.time > nextFire))
         {
             nextFire = Time.time + fireRate;
             FireLaser();
         }
-       
+
     }
 
-void FireLaser()
+    void FireLaser()
     {
-       Instantiate(laserPrefab, (this.transform.position + new Vector3(0, 0, 0)), Quaternion.identity);       
+
+        if (!isTripleShotActive)
+        {
+            Instantiate(laserPrefab, (this.transform.position + new Vector3(0, 0, 0)), Quaternion.identity);
+
+        }
+
+        else
+        {
+            Instantiate(tripleLaserPrefab, (this.transform.position + new Vector3(0, 0, 0)), Quaternion.identity);
+
+        }
+
     }
 
 
@@ -91,13 +109,27 @@ void FireLaser()
             {
                 Debug.LogError("Player_sc::Damage spawnManager_sc is NULL");
             }
-            
-            
+
+
             Destroy(this.gameObject);
-            
+
 
         }
     }
+
+
+    public void TripleShotActive()
+    {
+        isTripleShotActive = true;
+        StartCoroutine(TripleShotCancelRoutine());
+    }
+
+    IEnumerator TripleShotCancelRoutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        isTripleShotActive = false;
+    }
+
 
 }
 
