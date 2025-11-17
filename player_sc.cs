@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class player_sc : MonoBehaviour
 {
-    public int speed = 10;
-
+    [SerializeField]
+    float speed = 10;
+    float speedMultiplier=2;
+    
     [SerializeField]
     private bool isTripleShotActive = false;
+    
+    [SerializeField]
+    private bool isSpeedBonusActive=false;
+
+    [SerializeField]
+    private bool isShieldBonusActive=false;
+
     private float nextFire = 0;
 
     [SerializeField]
@@ -18,6 +27,9 @@ public class player_sc : MonoBehaviour
 
     [SerializeField]
     private GameObject tripleLaserPrefab;
+
+    [SerializeField]
+    GameObject shieldVisualizer;
 
     [SerializeField]
     private int lives = 5;
@@ -94,6 +106,13 @@ public class player_sc : MonoBehaviour
 
     public void Damage()
     {
+        if (isShieldBonusActive)
+        {
+            isShieldBonusActive=false;
+            shieldVisualizer.SetActive(false);
+            return;
+        }
+       
         lives--;
 
         if (lives == 0)
@@ -124,12 +143,38 @@ public class player_sc : MonoBehaviour
         StartCoroutine(TripleShotCancelRoutine());
     }
 
+    public void SpeedBonusActive()
+    {
+        isSpeedBonusActive=false;
+        speed*=speedMultiplier;
+        StartCoroutine(SpeedBonusCancelRoutine());
+    }
+
+    public void ShieldBonusActive()
+    {
+        isSpeedBonusActive=true;
+        shieldVisualizer.SetActive(true);
+        
+    }
+
     IEnumerator TripleShotCancelRoutine()
     {
         yield return new WaitForSeconds(5.0f);
         isTripleShotActive = false;
     }
 
+    IEnumerator SpeedBonusCancelRoutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        isSpeedBonusActive = false;
+        speed/=speedMultiplier;
+    }
+
+    IEnumerator ShieldBonusCancelRoutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        isShieldBonusActive = false;
+    }
 
 }
 

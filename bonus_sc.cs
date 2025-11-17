@@ -4,7 +4,9 @@ public class bonus_sc : MonoBehaviour
 {
     [SerializeField]
     float speed = 3;
-   
+    
+    [SerializeField]
+    int bonusId;
     
     // Update is called once per frame
     void Update()
@@ -26,7 +28,29 @@ public class bonus_sc : MonoBehaviour
 
             if (player_sc != null)
             {
-                player_sc.TripleShotActive();
+                //triple shot bonus
+                //hiz bonusu
+                //kalkan bonusu
+                
+                switch (bonusId)
+                {
+                    case 0: 
+                        player_sc.TripleShotActive();
+                        break;
+
+                    case 1:
+                        player_sc.SpeedBonusActive();
+                        break;
+
+                    case 2:
+                        player_sc.ShieldBonusActive();
+                        break;    
+
+                    default:
+                        Debug.Log("Hata");
+                        break;    
+                }
+                
             }
 
             //Bonus nesnesini yok et

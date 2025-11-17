@@ -10,6 +10,8 @@ public class SpawnManager_sc : MonoBehaviour
     [SerializeField]
     GameObject enemyContainer;
 
+    [SerializeField]
+    GameObject[] bonusPrefab;
 
     [SerializeField]
     private GameObject tripleShotBonusLaserPrefab;
@@ -19,7 +21,7 @@ public class SpawnManager_sc : MonoBehaviour
     void Start()
     {
         StartCoroutine(SpawnRoutine());
-        StartCoroutine(SpawnBonusRoutine());
+        StartCoroutine(SpawnBonusRoutine());       
     }
 
 
@@ -54,13 +56,13 @@ public class SpawnManager_sc : MonoBehaviour
             Vector3 position = new Vector3(Random.Range(-9.18f, 9.18f),
                                                                     7.4f, 0); 
             
-            GameObject tripleShotBonus = Instantiate(tripleShotBonusLaserPrefab, position, Quaternion.identity);
+            int randomBonus=Random.Range(0,2);
+            GameObject tripleShotBonus = Instantiate(bonusPrefab[randomBonus], position, Quaternion.identity);
+
         }
-
-
 
     }
 
-
+    
 
 }
