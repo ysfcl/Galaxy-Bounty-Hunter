@@ -32,12 +32,40 @@ public class player_sc : MonoBehaviour
     GameObject shieldVisualizer;
 
     [SerializeField]
-    private int lives = 5;
+    GameObject rightEngine,leftEngine;
+    
+    [SerializeField]
+    AudioClip laserSoundClip;
 
+    AudioSource audioSource;
+    UIManager_sc uiManager_sc;
+
+    [SerializeField]
+    private int lives = 3;
+
+    [SerializeField]
+    int score=0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         transform.position = new Vector3(0, 0, 0);
+        uiManager_sc=GameObject.Find("Canvas").GetComponent<UIManager_sc>();
+        
+        if (uiManager_sc == null)
+        {
+            Debug.LogError("Player_Sc:Start Hata - uiManager_sc NULL değerine sahip!");
+        }
+
+        audioSource=GetComponent<AudioSource>();
+
+         if (audioSource == null)
+        {
+            Debug.LogError("Player_Sc:Start Hata - audioSource NULL değerine sahip!");
+        }
+        else
+        {
+            audioSource.clip=laserSoundClip;
+        }
     }
 
     // Update is called once per frame
@@ -68,7 +96,8 @@ public class player_sc : MonoBehaviour
             Instantiate(tripleLaserPrefab, (this.transform.position + new Vector3(0, 0, 0)), Quaternion.identity);
 
         }
-
+        // Play the laser audio clip
+        audioSource.Play();
     }
 
 
@@ -112,8 +141,23 @@ public class player_sc : MonoBehaviour
             shieldVisualizer.SetActive(false);
             return;
         }
-       
+        //kalkan aktif değilse can 1 azalır
         lives--;
+
+        if (lives == 2)
+        {
+            rightEngine.SetActive(true);
+        }
+
+        else if (lives == 1)
+        {
+            leftEngine.SetActive(true);
+        }
+
+        if (uiManager_sc != null)
+        {
+            uiManager_sc.UpdateLives(lives);
+        }
 
         if (lives == 0)
         {
@@ -132,8 +176,14 @@ public class player_sc : MonoBehaviour
 
             Destroy(this.gameObject);
 
-
         }
+    }
+
+
+    public void AddScore(int point)
+    {
+        score+=point;   
+        uiManager_sc.UpdateScore(score);
     }
 
 

@@ -8,6 +8,9 @@ public class bonus_sc : MonoBehaviour
     [SerializeField]
     int bonusId;
     
+    [SerializeField]
+    AudioClip audioClip;
+
     // Update is called once per frame
     void Update()
     {
@@ -28,6 +31,9 @@ public class bonus_sc : MonoBehaviour
 
             if (player_sc != null)
             {
+               //Bonus ses efektini çal
+               AudioSource.PlayClipAtPoint(audioClip,this.transform.position,0.85f);
+               
                 //triple shot bonus
                 //hiz bonusu
                 //kalkan bonusu

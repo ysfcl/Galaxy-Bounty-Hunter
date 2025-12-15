@@ -4,12 +4,27 @@ public class enemy_sc : MonoBehaviour
 {
     [SerializeField]
     int speed = 4;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    /*    void Start()
-        {
 
+    [SerializeField]
+    player_sc player;
+
+    Animator animator;
+
+    AudioSource audioSource;
+
+    //Start is called once
+    void Start()
+    {
+        player=GameObject.Find("Player").GetComponent<player_sc>();
+        animator=GetComponent<Animator>();
+        audioSource=GetComponent<AudioSource>();
+
+        if (audioSource == null)
+        {
+            Debug.Log("Enemy_sc::Start audioSource");
         }
-    */
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -28,14 +43,10 @@ public class enemy_sc : MonoBehaviour
         }
     }
 
-    void OnTiggerEnter2D(Collider2D collision)
+    void OnTiggerEnter2D(Collider2D other)
     {
-        
-    }
+        Debug.Log("Çarpışma: "+other.tag);
 
-
-    void OnTriggerEnter(Collider other)
-    {
         if (other.tag == "Player")
         {
             //TODO:Player'ın canını bir eksilt
@@ -44,12 +55,21 @@ public class enemy_sc : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+
         else if (other.tag == "Laser")
         {
+            //Çarpıştığı lazeri yok et
             Destroy(other.gameObject);
+
+            if (player != null)
+            {
+                player.AddScore(10);
+            }
+
+            audioSource.Play();
+            //Kendini yok et
             Destroy(this.gameObject);
         }
     }
-
 
 }
